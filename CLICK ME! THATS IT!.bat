@@ -13,15 +13,21 @@
 :: See the License for the specific language governing permissions and
 :: limitations under the License.
 
-PATH=%PATH%;"%SYSTEMROOT%\System32"
+echo Made for Samsung/Google Galaxy Nexus (GSM ONLY) by Michael Langworth - 2013
+
+PATH=SPECIFY PATH HERE
 fastboot flash bootloader bootloader-maguro-primelc03.img
 fastboot reboot-bootloader
-ping -n 5 127.0.0.1 >nul
 fastboot flash radio radio-maguro-i9250xxlj1.img
-fastboot reboot-bootloader
-ping -n 5 127.0.0.1 >nul
-fastboot -w update image-takju-jdq39.zip
+fastboot flash boot boot.img
+fastboot flash recovery recovery.img
+fastboot flash system system.img
+fastboot -w erase
+fastboot flash userdata userdata.img
+fastboot devices
+fastboot reboot
 
+echo Modified by Michael Langworth - I DO NOT OWN ANY COPYRIGHT TO THIS FILE. ALL COPYRIGHT TO ANDROID OPEN SOURCE PROJECT UNDER APACHE LICENSE 2.0
 echo Press any key to exit...
 pause >nul
 exit
